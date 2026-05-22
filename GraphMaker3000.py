@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 userInput1 = input("Enter the filename without the filextension: SParam_")
 userInput2 = "SParam_" + userInput1 + ".csv"
 
+
 df = pd.read_csv(userInput2)
 
 # 1. Processing
@@ -40,18 +41,34 @@ ax1.set_xlim(left=0)
 # Fixed y-axis range
 ax1.set_ylim(0.54, 0.60)
 
-ax1.annotate(
-    'Started Vacuum',                      # The label text
-    xy=(3.2, 0.5602),                       # Point the arrow is touching (x, y)
-    xytext=(4, 0.55),                    # Where the text itself should live (x, y)
-    arrowprops=dict(
-        facecolor='black',               # Arrow color
-        arrowstyle='->',                 # Arrow style ('->', '-|>', 'fancy')
-        lw=1                           # Line width of the arrow
-    ),
-    fontsize=5,
-    fontweight='bold'
-)
+userInputNumberOfVectors = input("Enter the number of vectors: ")
+if int(userInputNumberOfVectors) != 0:
 
-plt.tight_layout()
-plt.show()
+    for i in range(int(userInputNumberOfVectors)):
+        userInputXcord = input("Enter the X coordinate: ")
+        userInputYcord = input("Enter the Y coordinate: ")
+
+        userInputTextXcord = input("Enter the text X coordinate: ")
+        userInputTextYcord = input("Enter the text Y coordinate: ")
+        userInputText = input("Enter the text: ")
+    ax1.annotate(
+        userInputText,                      # The label text
+        xy=(int(userInputXcord), float(userInputYcord)),                       # Point the arrow is touching (x, y)
+        xytext=(int(userInputTextXcord) , float(userInputTextYcord)),                    # Where the text itself should live (x, y)
+        arrowprops=dict(
+            facecolor='black',               # Arrow color
+            arrowstyle='->',                 # Arrow style ('->', '-|>', 'fancy')
+            lw=1                           # Line width of the arrow
+        ),
+        fontsize=5,
+        fontweight='bold'
+
+    )
+
+    plt.tight_layout()
+    plt.show()
+else:
+    
+    plt.tight_layout()
+    plt.show()
+
