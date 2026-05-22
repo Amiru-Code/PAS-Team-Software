@@ -41,8 +41,8 @@ ax1.set_xlim(left=0)
 ax1.set_ylim(0.54, 0.60)
 
 ax1.annotate(
-    'The power went out here and data collection had to be started again',                      # The label text
-    xy=(2.5, 0.56),                       # Point the arrow is touching (x, y)
+    'Started Vacuum',                      # The label text
+    xy=(3.2, 0.5602),                       # Point the arrow is touching (x, y)
     xytext=(4, 0.55),                    # Where the text itself should live (x, y)
     arrowprops=dict(
         facecolor='black',               # Arrow color
