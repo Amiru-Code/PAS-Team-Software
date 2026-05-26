@@ -51,19 +51,19 @@ if int(userInputNumberOfVectors) != 0:
         userInputTextXcord = input("Enter the text X coordinate: ")
         userInputTextYcord = input("Enter the text Y coordinate: ")
         userInputText = input("Enter the text: ")
-    ax1.annotate(
-        userInputText,                      # The label text
-        xy=(int(userInputXcord), float(userInputYcord)),                       # Point the arrow is touching (x, y)
-        xytext=(int(userInputTextXcord) , float(userInputTextYcord)),                    # Where the text itself should live (x, y)
-        arrowprops=dict(
-            facecolor='black',               # Arrow color
-            arrowstyle='->',                 # Arrow style ('->', '-|>', 'fancy')
-            lw=1                           # Line width of the arrow
-        ),
-        fontsize=5,
-        fontweight='bold'
+        ax1.annotate(
+            userInputText,                      # The label text
+            xy=(float(userInputXcord), float(userInputYcord)),                       # Point the arrow is touching (x, y)
+            xytext=(float(userInputTextXcord) , float(userInputTextYcord)),                    # Where the text itself should live (x, y)
+            arrowprops=dict(
+                facecolor='black',               # Arrow color
+                arrowstyle='->',                 # Arrow style ('->', '-|>', 'fancy')
+                lw=1                           # Line width of the arrow
+            ),
+            fontsize=5,
+            fontweight='bold'
 
-    )
+        )
 
     plt.tight_layout()
     plt.show()
