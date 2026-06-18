@@ -66,9 +66,13 @@ def main():
         zeolite_df = zeolite_df.copy()
         
         # Standardize time bounds: all graphs start their 'Elapsed Hours' at 0
-        zeolite_df['Elapsed Hours'] = (zeolite_df['Timestamp'] - start_time).dt.total_seconds() / 3600.0
+        user_input = float(input("-> Enter point when you started the heat/vacuum: "))
         
+        zeolite_df['Elapsed Hours'] = ((zeolite_df['Timestamp'] - start_time).dt.total_seconds() / 3600.0) - user_input
+         
         label_name = os.path.splitext(file)[0]
+
+        
         
         # Plot line
         ax1.errorbar(zeolite_df['Elapsed Hours'], zeolite_df['S Parameter'], yerr=zeolite_df['S Uncertainty'],
@@ -87,24 +91,24 @@ def main():
 
     # 4. Define custom starting and ending X points
     print("\n=========================================")
-    print("          --- X-Axis Bounds ---")
+    print("          --- X-Axis End Bound ---")
     print("=========================================")
     print("HELPER: The X-axis represents Elapsed Time in hours.")
     print("        0 is the exact start time of the experiment.")
     print("        If you just want to see the whole graph, press ENTER to skip.")
     try:
-        x_start = input("\n-> Enter starting X point (Default is 0): ")
+    #     x_start = input("\n-> Enter starting X point (Default is 0): ")
         x_end = input("-> Enter ending X point (Default is automatic): ")
-        
-        if x_start.strip():
-            ax1.set_xlim(left=float(x_start))
-        else:
-            ax1.set_xlim(left=0)
-            
+
+    #     if x_start.strip():
+    #         ax1.set_xlim(left=float(x_start))
+    #     else:
+    #         ax1.set_xlim(left=0)
+    
         if x_end.strip():
-            ax1.set_xlim(right=float(x_end))
+           ax1.set_xlim(right=float(x_end))
     except ValueError:
-        print("-> [WARNING] Invalid X bounds entered. Reverting to automatic bounds.")
+       print("-> [WARNING] Invalid X bounds entered. Reverting to automatic bounds.")
 
     # 5. Better Annotation input loop
     print("\n=========================================")
@@ -153,6 +157,7 @@ def main():
     print("Rendering graph... Close the graph window to exit the script.")
     print("=========================================")
     
+    plt.grid(True)
     plt.tight_layout()
     plt.show()
 
