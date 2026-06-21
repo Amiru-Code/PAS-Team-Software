@@ -96,6 +96,7 @@ def main():
     print("HELPER: The X-axis represents Elapsed Time in hours.")
     print("        0 is the exact start time of the experiment.")
     print("        If you just want to see the whole graph, press ENTER to skip.")
+    x_end_value = None
     try:
     #     x_start = input("\n-> Enter starting X point (Default is 0): ")
         x_end = input("-> Enter ending X point (Default is automatic): ")
@@ -106,9 +107,16 @@ def main():
     #         ax1.set_xlim(left=0)
     
         if x_end.strip():
-           ax1.set_xlim(right=float(x_end))
+           x_end_value = float(x_end)
+           ax1.set_xlim(right=x_end_value)
+
     except ValueError:
        print("-> [WARNING] Invalid X bounds entered. Reverting to automatic bounds.")
+
+    if x_end_value is not None:
+        mask = (zeolite_df['Elapsed Hours'] < x_end_value)
+    else:
+        mask = pd.Series([True] * len(zeolite_df))
 
     # 5. Better Annotation input loop
     print("\n=========================================")
@@ -159,6 +167,7 @@ def main():
     
     plt.grid(True)
     plt.tight_layout()
+    plt.plot(mask)
     plt.show()
 
 if __name__ == "__main__":
